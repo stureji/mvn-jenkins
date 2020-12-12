@@ -8,5 +8,6 @@ public class App {
     public static void main(String[] args){
         System.out.println("Hooks are working!");
         System.out.println("Status reporting are working!");
+        System.out.println("Will branching trigger a build? Hope not...");
     }
 }

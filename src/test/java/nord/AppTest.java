@@ -11,4 +11,13 @@ public class AppTest{
     public void shouldAnswerWithTrue(){
         Assert.assertTrue(true);
     }
+
+    @Test
+    public void fail() {
+        App app = new App();
+
+        boolean pass = app.willPass();
+
+        Assert.assertTrue(pass);
+    }
 }

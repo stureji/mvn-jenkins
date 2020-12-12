@@ -10,4 +10,8 @@ public class App {
         System.out.println("Status reporting are working!");
         System.out.println("Will branching trigger a build? Hope not...");
     }
+
+    public boolean willPass() {
+        return false;
+    }
 }

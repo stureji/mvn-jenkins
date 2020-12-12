@@ -1,7 +1,5 @@
 package nord;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,6 +9,6 @@ import org.junit.Test;
 public class AppTest{
     @Test
     public void shouldAnswerWithTrue(){
-        assertTrue(true);
+        Assert.assertTrue(true);
     }
 }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>nord</groupId>
+  <artifactId>jenkins-app</artifactId>
+  <version>0.0</version>
+
+  <name>jenkins-app</name>
+  <!-- FIXME change it to the project's website -->
+  <!-- <url>http://www.example.com</url> -->
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+    <mavenversion>3.6.3</mavenversion>
+    <javaversion>1.11</javaversion>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>jenkins-app</finalName>
+    <plugins>
+      <plugin><!-- clean goal -->
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+
+      <plugin> <!-- verifies versions in configuration -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0-M3</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion> <!-- require specific maven -->
+                  <version>${mavenversion}</version>
+                </requireMavenVersion>
+                <requireJavaVersion> <!-- require specific java -->
+                  <version>${javaversion}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin><!-- generate resources -->
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.2.0</version>
+      </plugin>
+
+      <plugin><!-- compiler -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+
+      <plugin><!-- test reporter -->
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+      </plugin>
+
+      <plugin><!-- jar composer -->
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <!-- turn off execution of the JAR, I want fatjar only! -->
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin><!-- for buidling fatjar -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>nord.App</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin><!-- installation goal -->
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.0.0-M1</version>
+      </plugin>
+
+      <plugin><!-- deploy goal -->
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.0.0-M1</version>
+      </plugin>
+
+      <plugin><!-- site goal for docs -->
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.9.1</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

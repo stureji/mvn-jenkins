@@ -6,7 +6,6 @@ package nord;
  */
 public class App {
     public static void main(String[] args){
-        System.out.println("Hello World!");
-        System.out.println("".isBlank()); // Only compiles with Java11
+        System.out.println("Hello, jenkins!");
     }
 }

@@ -12,6 +12,6 @@ public class App {
     }
 
     public boolean willPass() {
-        return false;
+        return true;
     }
 }
